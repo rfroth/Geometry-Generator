@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geometry Formula Generator</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#f4f6f8;
+}
+
+h1{
+margin-top:20px;
+}
+
+#shapeBox{
+margin:30px auto;
+width:300px;
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:white;
+border-radius:10px;
+box-shadow:0px 3px 8px rgba(0,0,0,.2);
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+background:#2a72d4;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e56a0;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Geometry Formula Generator</h1>
+<p>Write the formulas for this shape on your whiteboard!</p>
+
+<div id="shapeBox">
+<canvas id="shapeCanvas" width="250" height="250"></canvas>
+</div>
+
+<h2 id="shapeName"></h2>
+
+<button onclick="generateShape()">Generate Shape</button>
+
+<script>
+
+const shapes = [
+
+/* CIRCLES */
+{type:"Circle"},
+{type:"Circle"},
+{type:"Circle"},
+{type:"Circle"},
+{type:"Circle"},
+{type:"Circle"},
+
+/* TRIANGLES */
+{type:"Triangle"},
+{type:"Triangle"},
+{type:"Triangle"},
+{type:"Triangle"},
+{type:"Triangle"},
+{type:"Triangle"},
+
+/* SQUARE */
+{type:"Square"},
+{type:"Square"},
+{type:"Square"},
+{type:"Square"},
+{type:"Square"},
+{type:"Square"},
+
+/* RECTANGLE */
+{type:"Rectangle"},
+{type:"Rectangle"},
+{type:"Rectangle"},
+{type:"Rectangle"},
+{type:"Rectangle"},
+{type:"Rectangle"},
+
+/* TRAPEZOID */
+{type:"Trapezoid"},
+{type:"Trapezoid"},
+{type:"Trapezoid"},
+{type:"Trapezoid"},
+{type:"Trapezoid"},
+{type:"Trapezoid"},
+
+/* PARALLELOGRAM */
+{type:"Parallelogram"},
+{type:"Parallelogram"},
+{type:"Parallelogram"},
+{type:"Parallelogram"},
+{type:"Parallelogram"},
+{type:"Parallelogram"},
+
+/* RECTANGULAR PRISM */
+{type:"Rectangular Prism"},
+{type:"Rectangular Prism"},
+{type:"Rectangular Prism"},
+{type:"Rectangular Prism"},
+{type:"Rectangular Prism"},
+{type:"Rectangular Prism"},
+
+/* CUBE */
+{type:"Cube"},
+{type:"Cube"},
+{type:"Cube"},
+{type:"Cube"},
+{type:"Cube"},
+{type:"Cube"},
+
+/* TRIANGULAR PRISM */
+{type:"Triangular Prism"},
+{type:"Triangular Prism"},
+{type:"Triangular Prism"},
+{type:"Triangular Prism"},
+{type:"Triangular Prism"},
+{type:"Triangular Prism"},
+
+/* POLYGONAL PRISM */
+{type:"Polygonal Prism"},
+{type:"Polygonal Prism"},
+{type:"Polygonal Prism"},
+{type:"Polygonal Prism"},
+{type:"Polygonal Prism"},
+{type:"Polygonal Prism"}
+
+];
+
+function generateShape(){
+
+const randomShape = shapes[Math.floor(Math.random()*shapes.length)];
+
+document.getElementById("shapeName").innerText = randomShape.type;
+
+drawShape(randomShape.type);
+
+}
+
+function drawShape(type){
+
+const canvas = document.getElementById("shapeCanvas");
+const ctx = canvas.getContext("2d");
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.lineWidth = 3;
+
+if(type==="Circle"){
+ctx.beginPath();
+ctx.arc(125,125,80,0,Math.PI*2);
+ctx.stroke();
+}
+
+if(type==="Triangle"){
+ctx.beginPath();
+ctx.moveTo(125,40);
+ctx.lineTo(40,200);
+ctx.lineTo(210,200);
+ctx.closePath();
+ctx.stroke();
+}
+
+if(type==="Square"){
+ctx.strokeRect(60,60,130,130);
+}
+
+if(type==="Rectangle"){
+ctx.strokeRect(40,80,170,100);
+}
+
+if(type==="Trapezoid"){
+ctx.beginPath();
+ctx.moveTo(70,80);
+ctx.lineTo(180,80);
+ctx.lineTo(210,200);
+ctx.lineTo(40,200);
+ctx.closePath();
+ctx.stroke();
+}
+
+if(type==="Parallelogram"){
+ctx.beginPath();
+ctx.moveTo(70,80);
+ctx.lineTo(200,80);
+ctx.lineTo(170,200);
+ctx.lineTo(40,200);
+ctx.closePath();
+ctx.stroke();
+}
+
+if(type==="Cube"){
+ctx.strokeRect(70,70,100,100);
+ctx.strokeRect(100,40,100,100);
+
+ctx.beginPath();
+ctx.moveTo(70,70);
+ctx.lineTo(100,40);
+
+ctx.moveTo(170,70);
+ctx.lineTo(200,40);
+
+ctx.moveTo(170,170);
+ctx.lineTo(200,140);
+
+ctx.moveTo(70,170);
+ctx.lineTo(100,140);
+ctx.stroke();
+}
+
+if(type==="Rectangular Prism"){
+ctx.strokeRect(60,80,120,80);
+ctx.strokeRect(90,50,120,80);
+
+ctx.beginPath();
+ctx.moveTo(60,80);
+ctx.lineTo(90,50);
+
+ctx.moveTo(180,80);
+ctx.lineTo(210,50);
+
+ctx.moveTo(180,160);
+ctx.lineTo(210,130);
+
+ctx.moveTo(60,160);
+ctx.lineTo(90,130);
+ctx.stroke();
+}
+
+if(type==="Triangular Prism"){
+ctx.beginPath();
+ctx.moveTo(90,80);
+ctx.lineTo(40,180);
+ctx.lineTo(140,180);
+ctx.closePath();
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(160,80);
+ctx.lineTo(110,180);
+ctx.lineTo(210,180);
+ctx.closePath();
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(90,80);
+ctx.lineTo(160,80);
+
+ctx.moveTo(40,180);
+ctx.lineTo(110,180);
+
+ctx.moveTo(140,180);
+ctx.lineTo(210,180);
+ctx.stroke();
+}
+
+if(type==="Polygonal Prism"){
+ctx.beginPath();
+ctx.moveTo(90,60);
+ctx.lineTo(160,60);
+ctx.lineTo(200,120);
+ctx.lineTo(125,180);
+ctx.lineTo(50,120);
+ctx.closePath();
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(120,40);
+ctx.lineTo(190,40);
+ctx.lineTo(230,100);
+ctx.lineTo(155,160);
+ctx.lineTo(80,100);
+ctx.closePath();
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(90,60);
+ctx.lineTo(120,40);
+
+ctx.moveTo(160,60);
+ctx.lineTo(190,40);
+
+ctx.moveTo(200,120);
+ctx.lineTo(230,100);
+
+ctx.moveTo(125,180);
+ctx.lineTo(155,160);
+
+ctx.moveTo(50,120);
+ctx.lineTo(80,100);
+ctx.stroke();
+}
+
+}
+
+generateShape();
+
+</script>
+
+</body>
+</html>
